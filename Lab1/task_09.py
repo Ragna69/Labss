@@ -1,15 +1,15 @@
 ip = input('Введите IP для проверки на корректность:\n')
-ipp = ip.split('.')
-if not ip:
-    print('Строка пустая!')
+ip = ip.strip()
+ip = ip.split('.')
+if len(ip) != 4:
+    print('Неверный формат IP адреса!')
 else:
-    if len(ipp) != 4:
-        print('Неверный формат IP адреса!')
+    if not ip[0].isdigit() or  int(ip[0]) < 0 or int(ip[0]) > 255 or not\
+            ip[1].isdigit() or int(ip[1]) < 0 or int(ip[1]) > 255 or not\
+            ip[2].isdigit() or int(ip[2]) < 0 or int(ip[2]) > 255 or not\
+            ip[3].isdigit() or int(ip[3]) < 0 or int(ip[3]) > 255:
+        ip = '.'.join(ip)
+        print('Ваш IP', ip, 'некорректный')
     else:
-        if not ipp[0].isdigit() or 0 > int(ipp[0]) > 255 or not\
-             ipp[1].isdigit() or 0 > int(ipp[1]) > 255 or not\
-             ipp[2].isdigit() or 0 > int(ipp[2]) > 255 or not \
-             ipp[3].isdigit() or 0 > int(ipp[3]) > 255:
-            print('Ваш IP', ip, 'некорректный')
-        else:
-            print('Ваш IP', ip, 'корректный')
+        ip = '.'.join(ip)
+        print('Ваш IP', ip, 'корректный')
